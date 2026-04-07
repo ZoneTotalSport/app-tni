@@ -32,10 +32,8 @@
             font-family: 'Fredoka', 'Nunito', sans-serif;
             background: var(--navy);
             color: var(--text);
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
             user-select: none;
         }
 
@@ -57,6 +55,14 @@
         @keyframes bounce {
             0%,100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
+        }
+
+        /* ===== APP WRAPPER ===== */
+        #app-wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         /* ===== GYM BACKGROUND ===== */
@@ -455,18 +461,14 @@
         }
         .guide-start-btn:hover { transform: scale(1.02); box-shadow: 0 6px 25px rgba(0,229,255,0.5); }
 
-        /* ===== INTRO OVERLAY ===== */
-        #intro-overlay {
-            position: fixed; inset: 0; z-index: 7000;
+        /* ===== INTRO SECTION ===== */
+        #intro-section {
+            position: relative;
+            min-height: 100vh;
             background: url('img/gym-bg-roots.jpg') center/cover no-repeat;
             display: flex; align-items: center; justify-content: center;
-            animation: fadeIn 0.3s ease;
+            padding: 40px 20px;
         }
-        #intro-overlay::before {
-            content: ''; position: absolute; inset: 0;
-            background: rgba(13,27,46,0.55);
-        }
-        #intro-overlay.hidden { display: none; }
 
         .intro-card {
             position: relative; z-index: 1;
@@ -662,8 +664,8 @@
     </div>
 </div>
 
-<!-- INTRO OVERLAY -->
-<div id="intro-overlay">
+<!-- INTRO SECTION -->
+<section id="intro-section">
     <div class="intro-card">
         <div class="intro-top">
             <img class="intro-mascot" src="img/bucheron-tni.png" alt="Mr. Roots">
@@ -686,11 +688,14 @@
             <span class="intro-pill">💾 Export PNG</span>
         </div>
         <div class="intro-buttons">
-            <button class="intro-btn-start" onclick="closeIntro()">🚀 COMMENCER!</button>
-            <button class="intro-btn-guide" onclick="closeIntro(); showGuide();">📖 COMMENT UTILISER</button>
+            <button class="intro-btn-start" onclick="scrollToApp()">🚀 COMMENCER!</button>
+            <button class="intro-btn-guide" onclick="scrollToApp(); setTimeout(showGuide, 600);">📖 COMMENT UTILISER</button>
         </div>
     </div>
-</div>
+</section>
+
+<!-- APP WRAPPER -->
+<div id="app-wrapper">
 
 <!-- HEADER CYAN -->
 <header class="site-header">
@@ -789,6 +794,8 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+</div><!-- /APP WRAPPER -->
+
 <script>
 // ===== VARIABLES =====
 const canvas = document.getElementById('whiteboard');
@@ -828,7 +835,15 @@ const MAX_UNDO = 20;
 })();
 
 // ===== INTRO =====
-function closeIntro() { document.getElementById('intro-overlay').classList.add('hidden'); }
+function scrollToApp() {
+    document.getElementById('app-wrapper').scrollIntoView({ behavior: 'smooth' });
+    // Lock body scroll once in app mode
+    setTimeout(() => {
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
+        document.getElementById('app-wrapper').style.height = '100vh';
+    }, 800);
+}
 
 // ===== GUIDE =====
 function showGuide() { document.getElementById('guide-overlay').classList.remove('hidden'); }

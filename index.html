@@ -23,7 +23,7 @@
             --text: #ffffff;
             --card-bg: rgba(255,255,255,0.08);
             --glass: rgba(13,27,46,0.85);
-            --header-h: 60px;
+            --header-h: 72px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,11 +78,11 @@
         }
 
         .header-home-btn {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 6px 14px;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px;
             background: rgba(255,255,255,0.2);
             color: #fff; font-family: 'Luckiest Guy', cursive;
-            font-size: 0.85rem; letter-spacing: 1px;
+            font-size: 1.1rem; letter-spacing: 1px;
             border-radius: 10px; border: 2px solid rgba(255,255,255,0.4);
             text-decoration: none;
             transition: all 0.2s;
@@ -94,10 +94,10 @@
             display: flex; align-items: center; gap: 10px; flex: 1;
             justify-content: center;
         }
-        .header-mascot { height: 44px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+        .header-mascot { height: 56px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
         .header-title {
             font-family: 'Luckiest Guy', cursive;
-            font-size: 1.5rem; letter-spacing: 2px;
+            font-size: 2rem; letter-spacing: 3px;
             background: linear-gradient(90deg, #fff, var(--yellow), #fff);
             background-size: 200% auto;
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -110,11 +110,11 @@
         }
 
         .header-help-btn {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 6px 14px;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 10px 20px;
             background: rgba(255,255,255,0.2);
             color: #fff; font-family: 'Fredoka', sans-serif;
-            font-weight: 600; font-size: 0.85rem;
+            font-weight: 600; font-size: 1.1rem;
             border-radius: 10px; border: 2px solid rgba(255,255,255,0.4);
             cursor: pointer;
             transition: all 0.2s; flex-shrink: 0;
@@ -128,26 +128,26 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 2px solid rgba(0,229,255,0.2);
-            padding: 8px 12px;
-            display: flex; flex-wrap: wrap; gap: 8px;
+            padding: 10px 16px;
+            display: flex; flex-wrap: wrap; gap: 10px;
             justify-content: center; align-items: center;
             flex-shrink: 0;
         }
 
         .tool-group {
-            display: flex; gap: 5px; align-items: center;
-            padding: 0 10px;
+            display: flex; gap: 6px; align-items: center;
+            padding: 0 12px;
             border-right: 2px solid rgba(255,255,255,0.1);
         }
         .tool-group:last-child { border-right: none; }
 
         .tool-btn {
             font-family: 'Fredoka', sans-serif;
-            font-weight: 600; font-size: 0.85rem;
+            font-weight: 600; font-size: 1.1rem;
             border: 2px solid rgba(255,255,255,0.2);
             background: rgba(255,255,255,0.08);
-            color: #fff; padding: 6px 14px;
-            border-radius: 8px; cursor: pointer;
+            color: #fff; padding: 10px 18px;
+            border-radius: 10px; cursor: pointer;
             transition: all 0.2s; white-space: nowrap;
         }
         .tool-btn:hover { background: rgba(0,229,255,0.2); border-color: var(--cyan); transform: translateY(-1px); }
@@ -163,7 +163,7 @@
         .tool-btn.save:hover { background: rgba(76,175,80,0.4); }
 
         .color-dot {
-            width: 28px; height: 28px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             border: 3px solid rgba(255,255,255,0.3);
             cursor: pointer;
@@ -178,15 +178,42 @@
 
         .tool-label {
             font-family: 'Fredoka', sans-serif;
-            font-weight: 600; font-size: 0.8rem;
+            font-weight: 600; font-size: 1rem;
             color: rgba(255,255,255,0.6);
             text-transform: uppercase; letter-spacing: 1px;
         }
 
         input[type=range] {
-            width: 70px; accent-color: var(--cyan);
+            width: 100px; height: 24px; accent-color: var(--cyan);
             cursor: pointer;
         }
+
+        /* ===== TIPS BAR ===== */
+        #tips-bar {
+            flex-shrink: 0; z-index: 100;
+            background: rgba(0,229,255,0.08);
+            border-bottom: 1px solid rgba(0,229,255,0.15);
+            padding: 6px 16px;
+            display: flex; align-items: center; justify-content: center; gap: 24px;
+            font-family: 'Schoolbell', cursive;
+            font-size: 1rem; color: rgba(255,255,255,0.55);
+            overflow: hidden; white-space: nowrap;
+        }
+        #tips-bar span { display: inline-flex; align-items: center; gap: 4px; }
+        #tips-bar .tip-key {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px; padding: 1px 6px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .tips-close {
+            background: none; border: none; color: rgba(255,255,255,0.4);
+            cursor: pointer; font-size: 1.1rem; padding: 0 4px;
+            transition: color 0.2s;
+        }
+        .tips-close:hover { color: #fff; }
 
         /* ===== CANVAS AREA ===== */
         #canvas-container {
@@ -446,11 +473,14 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 700px) {
-            .header-title { font-size: 1rem; }
-            .header-home-btn, .header-help-btn { font-size: 0.75rem; padding: 5px 10px; }
-            .header-mascot { height: 34px; }
-            .tool-btn { font-size: 0.75rem; padding: 5px 10px; }
+            :root { --header-h: 56px; }
+            .header-title { font-size: 1.1rem; }
+            .header-home-btn, .header-help-btn { font-size: 0.85rem; padding: 8px 12px; }
+            .header-mascot { height: 40px; }
+            .tool-btn { font-size: 0.9rem; padding: 8px 12px; }
+            .color-dot { width: 30px; height: 30px; }
             .tool-label { display: none; }
+            #tips-bar { font-size: 0.85rem; gap: 12px; }
             .guide-card { padding: 20px; }
             .guide-header h2 { font-size: 1.2rem; }
         }
@@ -559,7 +589,7 @@
     <div class="tool-group">
         <span class="tool-label">Trait</span>
         <input type="range" id="lineWidth" min="1" max="40" value="5">
-        <span id="sizeLabel" style="font-size:0.8rem; color:rgba(255,255,255,0.5); min-width:24px;">5</span>
+        <span id="sizeLabel" style="font-size:1rem; color:rgba(255,255,255,0.6); min-width:28px; font-weight:600;">5</span>
     </div>
     <!-- Outils -->
     <div class="tool-group">
@@ -580,6 +610,17 @@
         <button class="tool-btn" onclick="undoLast()">↩️ Annuler</button>
         <button class="tool-btn save" onclick="saveCanvas()">💾 Sauver</button>
     </div>
+</div>
+
+<!-- TIPS BAR -->
+<div id="tips-bar">
+    <span>✏️ Clique et glisse pour dessiner</span>
+    <span>✋ Mode BOUGER pour déplacer les éléments</span>
+    <span>📷 Ajoute photos, vidéos et sites web</span>
+    <span><span class="tip-key">Ctrl+Z</span> Annuler</span>
+    <span><span class="tip-key">Ctrl+S</span> Sauvegarder</span>
+    <span><span class="tip-key">F</span> Plein écran</span>
+    <button class="tips-close" onclick="this.parentElement.style.display='none'" title="Fermer">✕</button>
 </div>
 
 <!-- CANVAS -->

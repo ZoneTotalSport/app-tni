@@ -708,6 +708,10 @@
         <span class="header-title">TABLEAU BLANC NUMÉRIQUE</span>
     </div>
     <button class="header-help-btn" onclick="showGuide()">❓ Aide</button>
+    <div id="zts-auth-status" style="display:flex;align-items:center;gap:8px;min-width:fit-content">
+      <span id="zts-auth-label" style="font-family:'Schoolbell',cursive;color:#fff;font-size:0.85rem;opacity:0.9"></span>
+      <button id="zts-auth-btn" style="font-family:'Luckiest Guy',cursive;padding:6px 14px;border-radius:999px;border:2px solid rgba(255,255,255,0.5);background:rgba(255,255,255,0.15);color:#fff;font-size:0.8rem;cursor:pointer;white-space:nowrap;display:none" onclick="ztsAuthAction()"></button>
+    </div>
 </header>
 
 <!-- TOOLBAR -->
@@ -1321,8 +1325,10 @@ window.ZTS_LANDING_CONFIG = {
       });
     }
   };
-  firebase.auth().onAuthStateChanged(function(u){var g=document.getElementById('zts-gate');if(u&&g)g.remove();});
+  firebase.auth().onAuthStateChanged(function(u){var g=document.getElementById('zts-gate');if(u&&g)g.remove();ztsUpdateAuthUI(u);});
 })();
+function ztsUpdateAuthUI(u){var l=document.getElementById('zts-auth-label'),b=document.getElementById('zts-auth-btn');if(!l||!b)return;if(u){var name=u.displayName||u.email.split('@')[0];l.textContent='\u{1F464} '+name;b.textContent='Deconnexion';b.style.display='inline-block';b.style.background='rgba(255,255,255,0.15)';b.style.borderColor='rgba(255,255,255,0.5)';}else{l.textContent='';b.textContent='Se connecter';b.style.display='inline-block';b.style.background='rgba(255,255,255,0.25)';b.style.borderColor='#fff';}}
+function ztsAuthAction(){var u=firebase.auth().currentUser;if(u){firebase.auth().signOut().then(function(){location.reload();});}else{location.reload();}}
 </script>
 </body>
 </html>
